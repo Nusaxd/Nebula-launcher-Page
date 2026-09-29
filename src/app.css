@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+
+  --color-ink-950: #07070d;
+  --color-ink-900: #0c0c16;
+  --color-ink-800: #12121f;
+  --color-ink-700: #1b1b2d;
+  --color-ink-600: #26263c;
+
+  --animate-fade-in: fade-in 0.18s ease-out;
+  --animate-pop-in: pop-in 0.2s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  --animate-slide-up: slide-up 0.25s ease-out;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes pop-in {
+    from { opacity: 0; transform: scale(0.96) translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #app {
+    height: 100%;
+  }
+  body {
+    @apply bg-ink-950 text-zinc-100 antialiased overflow-hidden select-none;
+    font-family: var(--font-sans);
+  }
+  input,
+  textarea,
+  select,
+  .selectable {
+    user-select: text;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(255 255 255 / 0.1);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(255 255 255 / 0.2);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  select {
+    color-scheme: dark;
+  }
+}
+
+@utility card {
+  @apply rounded-2xl border border-white/8 bg-white/[0.035] backdrop-blur-sm;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-3.5 py-2 text-sm font-medium
+    transition duration-150 outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60
+    disabled:opacity-50 active:scale-[0.98];
+}
+@utility btn-primary {
+  @apply btn bg-gradient-to-br from-violet-500 to-sky-500 text-white shadow-lg shadow-violet-900/30
+    hover:brightness-110 disabled:hover:brightness-100;
+}
+@utility btn-ghost {
+  @apply btn border border-white/10 bg-white/5 text-zinc-200 hover:bg-white/10;
+}
+@utility btn-danger {
+  @apply btn border border-rose-500/30 bg-rose-500/10 text-rose-300 hover:bg-rose-500/20;
+}
+@utility btn-icon {
+  @apply inline-flex size-9 items-center justify-center rounded-xl border border-white/10 bg-white/5
+    text-zinc-300 transition hover:bg-white/10 hover:text-white disabled:opacity-40;
+}
+@utility input {
+  @apply w-full rounded-xl border border-white/10 bg-ink-900/80 px-3 py-2 text-sm text-zinc-100
+    placeholder:text-zinc-500 outline-none transition focus:border-violet-400/60 focus:ring-2 focus:ring-violet-400/20;
+}
+@utility label {
+  @apply mb-1.5 block text-xs font-medium tracking-wide text-zinc-400 uppercase;
+}
+@utility hint {
+  @apply mt-1 text-xs text-zinc-500;
+}
+@utility chip {
+  @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs
+    font-medium text-zinc-300 transition hover:bg-white/10;
+}
+@utility chip-active {
+  @apply border-violet-400/50 bg-violet-500/20 text-violet-200;
+}
+
+/* Nebula backdrop */
+.nebula-bg {
+  background:
+    radial-gradient(60rem 40rem at 85% -10%, rgb(124 58 237 / 0.22), transparent 60%),
+    radial-gradient(50rem 40rem at -10% 110%, rgb(14 165 233 / 0.16), transparent 60%),
+    radial-gradient(30rem 30rem at 60% 120%, rgb(236 72 153 / 0.08), transparent 60%),
+    var(--color-ink-950);
+}
+
+input[type="range"] {
+  accent-color: #8b5cf6;
+}
